@@ -26,8 +26,7 @@ public class Route {
     @Column(name = "video_url")
     private String videoUrl;
 
-    @ManyToOne
-    @JoinColumn(name = "author_id", referencedColumnName = "id")
+    @ManyToOne(optional = false)
     private User author;
 
     public Route() {
