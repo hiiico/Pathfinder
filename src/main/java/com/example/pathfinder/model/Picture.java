@@ -15,7 +15,7 @@ public class Picture {
     @Column(columnDefinition = "TEXT")
     private String url;
 
-    @ManyToOne(optional = false, fetch = FetchType.LAZY)
+    @ManyToOne(optional = false)
     private User author;
 
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
@@ -54,5 +54,13 @@ public class Picture {
 
     public void setRoute(Route route) {
         this.route = route;
+    }
+
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
     }
 }
