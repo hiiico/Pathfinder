@@ -14,15 +14,16 @@ public class Comment {
     @Column(nullable = false)
     private boolean approved;
 
+    @Column(nullable = false)
     private Instant created;
 
-    @Column(name = "text_content", columnDefinition = "TEXT")
+    @Column(name = "text_content", columnDefinition = "TEXT", nullable = false)
     private String textContent;
 
-    @ManyToOne(optional = false)
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User author;
 
-    @ManyToOne(optional = false)
+    @ManyToOne
     private Route route;
 
     public Comment() {

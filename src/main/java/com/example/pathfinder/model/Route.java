@@ -2,6 +2,9 @@ package com.example.pathfinder.model;
 
 import jakarta.persistence.*;
 
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "routes")
 public class Route {
@@ -29,7 +32,11 @@ public class Route {
     @ManyToOne(optional = false)
     private User author;
 
+    @OneToMany(mappedBy = "route")
+    private Set<Comment> comments;
+
     public Route() {
+        this.comments = new HashSet<>();
     }
 
     public long getId() {
@@ -86,5 +93,13 @@ public class Route {
 
     public void setAuthor(User author) {
         this.author = author;
+    }
+
+    public Set<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(Set<Comment> comments) {
+        this.comments = comments;
     }
 }
