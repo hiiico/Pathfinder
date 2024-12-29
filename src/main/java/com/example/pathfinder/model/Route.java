@@ -35,8 +35,12 @@ public class Route {
     @OneToMany(mappedBy = "route")
     private Set<Comment> comments;
 
+    @OneToMany(mappedBy = "route")
+    private Set<Picture> pictures;
+
     public Route() {
         this.comments = new HashSet<>();
+        this.pictures = new HashSet<>();
     }
 
     public long getId() {
@@ -101,5 +105,13 @@ public class Route {
 
     public void setComments(Set<Comment> comments) {
         this.comments = comments;
+    }
+
+    public Set<Picture> getPictures() {
+        return pictures;
+    }
+
+    public void setPictures(Set<Picture> pictures) {
+        this.pictures = pictures;
     }
 }
