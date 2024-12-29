@@ -38,9 +38,13 @@ public class Route {
     @OneToMany(mappedBy = "route")
     private Set<Picture> pictures;
 
+    @ManyToMany
+    private Set<Category> categories;
+
     public Route() {
         this.comments = new HashSet<>();
         this.pictures = new HashSet<>();
+        this.categories = new HashSet<>();
     }
 
     public long getId() {
@@ -113,5 +117,13 @@ public class Route {
 
     public void setPictures(Set<Picture> pictures) {
         this.pictures = pictures;
+    }
+
+    public Set<Category> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(Set<Category> categories) {
+        this.categories = categories;
     }
 }
