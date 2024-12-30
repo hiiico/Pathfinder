@@ -23,7 +23,7 @@ public class Comment {
     @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private User author;
 
-    @ManyToOne
+    @ManyToOne(optional = false, fetch = FetchType.LAZY)
     private Route route;
 
     public Comment() {

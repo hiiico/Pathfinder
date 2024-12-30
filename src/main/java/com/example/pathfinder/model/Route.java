@@ -32,10 +32,10 @@ public class Route {
     @ManyToOne(optional = false)
     private User author;
 
-    @OneToMany(mappedBy = "route")
+    @OneToMany(targetEntity = Comment.class, mappedBy = "route")
     private Set<Comment> comments;
 
-    @OneToMany(mappedBy = "route")
+    @OneToMany(targetEntity = Picture.class, mappedBy = "route")
     private Set<Picture> pictures;
 
     @ManyToMany
