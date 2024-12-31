@@ -1,5 +1,6 @@
-package com.example.pathfinder.model;
+package com.example.pathfinder.model.entities;
 
+import com.example.pathfinder.model.enums.CategoryType;
 import jakarta.persistence.*;
 
 @Entity

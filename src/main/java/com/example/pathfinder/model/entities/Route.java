@@ -1,5 +1,6 @@
-package com.example.pathfinder.model;
+package com.example.pathfinder.model.entities;
 
+import com.example.pathfinder.model.enums.UserLevel;
 import jakarta.persistence.*;
 
 import java.util.HashSet;
@@ -22,7 +23,7 @@ public class Route {
     @Column(name = "gpx_coordinates", columnDefinition = "LONGTEXT")
     private String gpxCoordinates;
 
-    @Column(name = "level_enum")
+    @Column(name = "level")
     @Enumerated(EnumType.STRING)
     private UserLevel levelEnum;
 
@@ -126,4 +127,6 @@ public class Route {
     public void setCategories(Set<Category> categories) {
         this.categories = categories;
     }
+
+
 }

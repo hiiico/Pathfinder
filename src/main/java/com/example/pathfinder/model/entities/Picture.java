@@ -1,4 +1,4 @@
-package com.example.pathfinder.model;
+package com.example.pathfinder.model.entities;
 
 import jakarta.persistence.*;
 
@@ -12,7 +12,7 @@ public class Picture {
 
     private String title;
 
-    @Column(columnDefinition = "TEXT")
+    @Column(nullable = false, columnDefinition = "TEXT")
     private String url;
 
     @ManyToOne(optional = false)

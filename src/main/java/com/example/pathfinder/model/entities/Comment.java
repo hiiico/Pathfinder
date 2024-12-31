@@ -1,4 +1,4 @@
-package com.example.pathfinder.model;
+package com.example.pathfinder.model.entities;
 
 import jakarta.persistence.*;
 import java.time.Instant;

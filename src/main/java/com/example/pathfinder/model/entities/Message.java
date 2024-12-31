@@ -1,4 +1,4 @@
-package com.example.pathfinder.model;
+package com.example.pathfinder.model.entities;
 
 import jakarta.persistence.*;
 import java.time.Instant;
@@ -65,4 +65,5 @@ public class Message {
     public void setRecipient(User recipient) {
         this.recipient = recipient;
     }
+
 }

@@ -52,13 +52,13 @@
 </header>
 
     <section class="road">
-        <img src="/images/pic4.jpg" alt="Title image">
-        <div>
-            <h2>Your Route</h2>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vitae alias reiciendis deleniti possimus nemo
-                non repellendus?
-                Quae atque vero modi quidem! Autem cupiditate fugit doloribus ad amet, asperiores provident commodi.</p>
-            <a href="/" class="btn">Learn More</a>
+        <div th:each="route : ${allRoutes}"> <!-- list of routes -->
+            <img th:src="${route.imageUrl}" alt="Title image">
+            <div> <!-- single random route -->
+                <h2 th:text="${route.name}"></h2>
+                <p th:text="${route.description}"></p>
+                <a href="/" class="btn">Learn More</a>
+            </div>
         </div>
     </section>
 </div>
@@ -67,7 +67,7 @@
 <footer class="footer bg-blur rounded">
     <div class="container-fluid text-center">
         <div class="h5 text-white">
-            &copy; Lucho, Chocho & Spring Advanced Students 2021. All rights reserved.
+            &copy; H.Ivanov & Spring Advanced Students 2024. All rights reserved.
         </div>
     </div>
 </footer>

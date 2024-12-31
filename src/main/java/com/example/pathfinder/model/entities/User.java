@@ -1,5 +1,6 @@
-package com.example.pathfinder.model;
+package com.example.pathfinder.model.entities;
 
+import com.example.pathfinder.model.enums.UserLevel;
 import jakarta.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
