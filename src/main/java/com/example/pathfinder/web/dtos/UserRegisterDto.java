@@ -5,11 +5,12 @@ import jakarta.validation.constraints.*;
 public class UserRegisterDto {
 
     @NotBlank
+    @Size(min = 5, max = 20)
     private String userName;
 
     @NotNull
     @NotEmpty
-    @Size(min = 5, max = 20)
+    @Size(min = 2)
     private String fullName;
 
     @Email

@@ -2,8 +2,8 @@ spring:
   datasource:
     driverClassName: com.mysql.cj.jdbc.Driver
     url: "jdbc:mysql://localhost:3306/pathfinder?allowPublicKeyRetrieval=true&useSSL=false&createDatabaseIfNotExist=true&serverTimezone=UTC"
-    username: root
-    password: 
+    username: ${db_username}
+    password: ${db_password}
   servlet:
     multipart:
       max-file-size: 1MB
@@ -12,9 +12,10 @@ spring:
     hiddenmethod:
       filter:
         enabled: true
-  #sql:
-    #init:
-      #mode: always
+  sql:
+    init:
+      # when seed DB switch to always
+      mode: never #always
   jpa:
     # Choose either MySQL 8 or MySQL 5 below
     # For MySQL 8
@@ -33,3 +34,10 @@ spring:
   #api-key: 
   #api-secret: 
   #cloud-name: 
+  thymeleaf:
+    check-template-location: true
+    cache: false
+    prefix: file:./src/main/resources/templates/
+    resources:
+     static-location: file:.src/main/resources/static/
+     cache-period: 0

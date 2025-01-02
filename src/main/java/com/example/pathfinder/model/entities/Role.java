@@ -2,7 +2,13 @@ package com.example.pathfinder.model.entities;
 
 import com.example.pathfinder.model.enums.UserRole;
 import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
+@Setter
+@Getter
+@NoArgsConstructor
 @Entity
 @Table(name = "roles")
 public class Role {
@@ -14,22 +20,4 @@ public class Role {
     @Enumerated(EnumType.STRING)
     private UserRole name;
 
-    public Role() {
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public UserRole getName() {
-        return name;
-    }
-
-    public void setName(UserRole name) {
-        this.name = name;
-    }
 }
