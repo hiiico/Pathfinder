@@ -1,55 +1,48 @@
 package com.example.pathfinder.service;
 
 import com.example.pathfinder.data.UserRepository;
+import com.example.pathfinder.exception.DomainException;
 import com.example.pathfinder.model.entities.User;
 import com.example.pathfinder.service.dtos.UserProfileDto;
-import com.example.pathfinder.web.dtos.UserLoginDto;
-import com.example.pathfinder.web.dtos.UserRegisterDto;
+import com.example.pathfinder.web.dto.UserRegister;
+import lombok.RequiredArgsConstructor;
 import org.modelmapper.ModelMapper;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
+@RequiredArgsConstructor
 public class UserService {
 
     private final UserRepository userRepository;
     private final PasswordEncoder passwordEncoder;
     private final ModelMapper modelMapper;
-    private final CurrentUser currentUser;
+    private final CurrentUserService currentUserService;
 
-    @Autowired
-    public UserService(UserRepository userRepository, PasswordEncoder passwordEncoder, ModelMapper modelMapper, CurrentUser currentUser) {
-        this.userRepository = userRepository;
-        this.passwordEncoder = passwordEncoder;
-        this.modelMapper = modelMapper;
-        this.currentUser = currentUser;
-    }
+    public void register(UserRegister userRegister) {
 
-    public void register(UserRegisterDto userRegisterDto) {
-        User user = modelMapper.map(userRegisterDto, User.class);
+        Optional<User> userOptional = userRepository.findByUsername(userRegister.getUsername());
+        if (userOptional.isPresent()){
+            throw new DomainException("Username [%s] is already taken!".formatted(userRegister.getUsername()));
+        }
+        User user = modelMapper.map(userRegister, User.class);
         user.setPassword(passwordEncoder.encode(user.getPassword()));
         userRepository.save(user);
+//        userRepository.save(initilizeUser(userRegister));
+//        return user;
     }
 
-    public void login(UserLoginDto loginData) {
-        User user = userRepository.findByUsername(loginData.getUserName());
-        if(user == null) {
-            // TODO throw exception
-            return;
-        }
-        if(passwordEncoder.matches(loginData.getPassword(), user.getPassword())
-                && !currentUser.isLoggedIn()) {
-            currentUser.setUser(user);
-        }
-
+/*    private User initilizeUser(UserRegister userRegister) {
+        return User.builder()
+                .userName(userRegister.getUsername())
+                .
     }
-
-    public void logout() {
-        currentUser.setUser(null);
-    }
+*/
 
     public UserProfileDto getProfileData() {
-        return modelMapper.map(currentUser.getUser(), UserProfileDto.class);
+        return modelMapper.map(currentUserService.getUser(), UserProfileDto.class);
     }
+
 }

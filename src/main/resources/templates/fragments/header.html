@@ -1,34 +1,35 @@
-<header th:fragment="header">
+<header th:fragment="header" xmlns:sec="http://www.w3.org/1999/xhtml">
     <nav class="main-nav">
         <ul>
-            <th:block th:unless="${@currentUser.isLoggedIn()}">
+            <th:block sec:authorize="!isAuthenticated()">
                 <li>
-                    <a th:href="@{/}">Home</a>
+                    <a th:href="@{/}">Heim</a>
                 </li>
                 <li>
                     <a th:href="@{/users/login}">Login</a>
                 </li>
                 <li>
-                    <a th:href="@{/users/register}">Register</a>
+                    <a th:href="@{/users/register}">Registrieren</a>
                 </li>
                 <li>
-                    <a th:href="@{/about}">About</a>
+                    <a th:href="@{/about}">Über uns</a>
                 </li>
-            </th:block>
-            <th:block th:if="${@currentUser.isLoggedIn()}">
+            </th:block >
+            <th:block sec:authorize="isAuthenticated()">
                 <li>
-                    <a th:href="@{/users/add-route}">Add new route</a>
+                    <a th:href="@{/add-route}">Neue Route hinzufügen</a>
                 </li>
                 <li>
-                    <a th:href="@{/users/profile}">Profile</a>
+                    <a th:href="@{/users/profile}">Profil</a>
                 </li>
-                <li th:if="${@currentUser.isAdmin()}">
-                    <a href="/">Admin</a>
+                <!-- TODO the role name is incorrect -->
+                <li sec:authorize="hasRole('ADMIN')">
+                <a href="/">Verwaltung</a>
                 </li>
                 <li>
                     <form th:method="POST"
                           th:action="@{users/logout}">
-                    <button type="submit">Logout</button>
+                        <button type="submit" >Ausloggen</button>
                     </form>
                 </li>
             </th:block>

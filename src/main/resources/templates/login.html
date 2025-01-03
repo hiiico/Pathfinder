@@ -8,13 +8,16 @@
 
         <div class="row g-3 align-items-center">
 
-            <form
-                    th:action="@{/users/login}"
-                    th:method="POST"
-                    th:object="${loginData}">
+            <form th:action="@{/users/login}"
+                  th:method="POST"
+                  th:object="${loginData}">
+                <div th:if="${showErrorMessage}"
+                     th:text="'Invalid username or password'"
+                     class="badge-danger" >
+                </div>
                 <div>
                     <div class="col-auto">
-                        <label for="inputUsername" class="col-form-label ">Username</label>
+                        <label for="inputUsername" class="col-form-label ">Benutzername</label>
                     </div>
                     <div class="col-auto">
                         <input th:field="*{username}"
@@ -28,7 +31,7 @@
                 </div>
                 <div>
                     <div class="col-auto">
-                        <label for="inputPassword" class="col-form-label ">Password</label>
+                        <label for="inputPassword" class="col-form-label ">Passwort</label>
                     </div>
                     <div class="col-auto">
                         <input th:field="*{password}"

@@ -5,42 +5,12 @@
 <body>
 <div class="wrapper">
     <!-- Navigation -->
-<header>
-    <nav class="main-nav">
-        <ul>
-                <li>
-                    <a href="/">Home</a>
-                </li>
-                <li>
-                    <a href="/">Login</a>
-                </li>
-                <li>
-                    <a href="/">Register</a>
-                </li>
-                <li>
-                    <a href="/">About</a>
-                </li>
-				<li>
-                    <a href="/">Add new route</a>
-                </li>
-                <li>
-                    <a href="/">Profile</a>
-                </li>
-                <li>
-                    <a href="/">Admin</a>
-                </li>
-                <li>
-                    <a href="/">Logout</a>
-                </li>
-        </ul>
-    </nav>
-</header>
-
+    <header th:replace="~{fragments/header}"></header>
      <section class="road">
         <div>
-            <h2>Title</h2>
-            <p>Very long description</p>
-            <a href="/" class="btn">Learn More</a>
+            <h2>Titel</h2>
+            <p>Sehr lange Beschreibung</p>
+            <a href="/" class="btn">Mehr erfahren</a>
         </div>
         <img class="rounded-circle w-75 ml-5" src="/images/pic1.jpg" alt="Title image">
     </section>

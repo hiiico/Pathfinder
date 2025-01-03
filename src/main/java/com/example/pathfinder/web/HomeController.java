@@ -11,20 +11,20 @@ import java.util.Random;
 public class HomeController {
 
     @GetMapping("/")
-//    public ModelAndView index() {
-//        double sofiaTemp = new Random().nextDouble();
-//        ModelAndView mnv = new ModelAndView();
-//        mnv.setViewName("index");
-//        mnv.addObject("sofiaTemperature", sofiaTemp);
-//        return mnv;
-//    }
-
+    public ModelAndView index() {
+        double sofiaTemp = new Random().nextDouble();
+        ModelAndView mnv = new ModelAndView();
+        mnv.setViewName("index");
+        mnv.addObject("sofiaTemperature", sofiaTemp);
+        return mnv;
+    }
+    /*
     public String index(Model model) {
         double sofiaTemp = new Random().nextDouble();
-
         model.addAttribute("sofiaTemperature", sofiaTemp);
         return "index";
     }
+    */
 
     @GetMapping("/about")
     public ModelAndView about() {

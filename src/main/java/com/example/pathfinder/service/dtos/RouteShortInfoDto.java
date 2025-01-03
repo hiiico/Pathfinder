@@ -1,47 +1,23 @@
 package com.example.pathfinder.service.dtos;
 
+import lombok.Data;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Data
 public class RouteShortInfoDto {
 
     private long id;
 
-    private String  name;
+    private String name;
 
     private String description;
 
     private String imageUrl;
 
-    public RouteShortInfoDto() {
-    }
+//    private UserLevel level;
 
-    public long getId() {
-        return id;
-    }
+//    private String videoUrl;
 
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getImageUrl() {
-        return imageUrl;
-    }
-
-    public void setImageUrl(String imageUrl) {
-        this.imageUrl = imageUrl;
-    }
 }

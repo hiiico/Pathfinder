@@ -2,12 +2,10 @@ package com.example.pathfinder.web;
 
 import com.example.pathfinder.model.enums.UserLevel;
 import com.example.pathfinder.service.UserService;
-import com.example.pathfinder.service.dtos.UserProfileDto;
-import com.example.pathfinder.web.dtos.UserLoginDto;
-import com.example.pathfinder.web.dtos.UserRegisterDto;
+import com.example.pathfinder.web.dto.UserLoginDto;
+import com.example.pathfinder.web.dto.UserRegister;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,16 +21,16 @@ public class UserController {
     }
 
     @GetMapping("users/register")
-    public String viewRegister(Model model) {
-        model.addAttribute("registerData", new UserRegisterDto());
-        model.addAttribute("levels", UserLevel.values());
-
-        return "register";
+    public ModelAndView viewRegister() {
+        ModelAndView mnv = new ModelAndView("register");
+        mnv.addObject("registerData", new UserRegister());
+        mnv.addObject("levels", UserLevel.values());
+        return mnv;
     }
 
     @PostMapping("users/register")
     public String doRegister(
-            @Valid UserRegisterDto data,
+            @Valid UserRegister data,
             BindingResult bindingResult,
             RedirectAttributes redirectAttributes) {
 
@@ -53,22 +51,19 @@ public class UserController {
         return modelAndView;
     }
 
-    @PostMapping("users/login")
-    private String doLogin(UserLoginDto loginData) {
-        userService.login(loginData);
-        return "redirect:/";
-    }
-
-    @PostMapping("users/logout")
-    public String logout() {
-        userService.logout();
-        return "redirect:/";
+    @GetMapping("users/login-error")
+    public ModelAndView viewLoginError() {
+        ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("showErrorMessage", true);
+        modelAndView.addObject("loginData", new UserLoginDto());
+        return modelAndView;
     }
 
     @GetMapping("users/profile")
     private ModelAndView viewProfile() {
         ModelAndView mnv = new ModelAndView("profile");
-        mnv.addObject("profileDta", userService.getProfileData());
+        mnv.addObject("profileData", userService.getProfileData());
         return mnv;
     }
+
 }
