@@ -1,5 +1,8 @@
 package com.example.pathfinder.web;
 
+import com.example.pathfinder.model.enums.UserLevel;
+import com.example.pathfinder.service.UserService;
+import com.example.pathfinder.web.dtos.UserLoginDto;
 import com.example.pathfinder.web.dtos.UserRegisterDto;
 import jakarta.validation.Valid;
 import org.springframework.stereotype.Controller;
@@ -7,21 +10,26 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 @Controller
-@RequestMapping("users")
 public class UserController {
+    private final UserService userService;
 
-    @GetMapping("/register")
+    public UserController(UserService userService) {
+        this.userService = userService;
+    }
+
+    @GetMapping("users/register")
     public String viewRegister(Model model) {
         model.addAttribute("registerData", new UserRegisterDto());
+        model.addAttribute("levels", UserLevel.values());
 
         return "register";
     }
 
-    @PostMapping("/register")
+    @PostMapping("users/register")
     public String doRegister(
             @Valid UserRegisterDto data,
             BindingResult bindingResult,
@@ -33,11 +41,26 @@ public class UserController {
 
             return "redirect:users/register";
         }
+        userService.register(data);
         return "redirect:/users/login";
     }
 
     @GetMapping("users/login")
-    public String viewLogin() {
-        return "login";
+    public ModelAndView viewLogin() {
+        ModelAndView modelAndView = new ModelAndView("login");
+        modelAndView.addObject("loginData", new UserLoginDto());
+        return modelAndView;
+    }
+
+    @PostMapping("users/login")
+    private String doLogin(UserLoginDto loginData) {
+        userService.login(loginData);
+        return "redirect:/";
+    }
+
+    @PostMapping("users/logout")
+    public String logout() {
+        userService.logout();
+        return "redirect:/";
     }
 }

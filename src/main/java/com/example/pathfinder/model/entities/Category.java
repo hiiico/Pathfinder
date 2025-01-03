@@ -2,14 +2,8 @@ package com.example.pathfinder.model.entities;
 
 import com.example.pathfinder.model.enums.CategoryType;
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Setter
-@Getter
 @Entity
-@NoArgsConstructor
 @Table(name = "categories")
 public class Category {
 
@@ -22,4 +16,31 @@ public class Category {
 
     @Column(columnDefinition = "TEXT")
     private String description;
+
+    public Category() {
+    }
+
+    public long getId() {
+        return id;
+    }
+
+    public void setId(long id) {
+        this.id = id;
+    }
+
+    public CategoryType getName() {
+        return name;
+    }
+
+    public void setName(CategoryType name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }

@@ -19,10 +19,10 @@ public class RouteService {
 //    private final Random random;
     private final ModelMapper modelMapper;
 
-    public RouteService(RouteRepository routeRepository) {
+    public RouteService(RouteRepository routeRepository, ModelMapper modelMapper) {
         this.routeRepository = routeRepository;
+        this.modelMapper = modelMapper;
 //        this.random = new Random();
-        this.modelMapper = new ModelMapper();
     }
 
     // List of routes

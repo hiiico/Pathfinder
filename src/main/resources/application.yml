@@ -33,7 +33,8 @@ spring:
 #cloudinary:
   #api-key: 
   #api-secret: 
-  #cloud-name: 
+  #cloud-name:
+  # hot reload
   thymeleaf:
     check-template-location: true
     cache: false

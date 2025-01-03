@@ -1,5 +1,6 @@
 package com.example.pathfinder.web.dtos;
 
+import com.example.pathfinder.model.enums.UserLevel;
 import jakarta.validation.constraints.*;
 
 public class UserRegisterDto {
@@ -25,6 +26,8 @@ public class UserRegisterDto {
 
     @Size(min = 5, max = 20)
     private String confirmPassword;
+
+    private UserLevel level;
 
     public UserRegisterDto() {
     }
@@ -75,5 +78,13 @@ public class UserRegisterDto {
 
     public void setConfirmPassword(String confirmPassword) {
         this.confirmPassword = confirmPassword;
+    }
+
+    public UserLevel getLevel() {
+        return level;
+    }
+
+    public void setLevel(UserLevel level) {
+        this.level = level;
     }
 }
