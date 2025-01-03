@@ -1,4 +1,4 @@
-package com.example.pathfinder.model.dtos;
+package com.example.pathfinder.service.dtos;
 
 public class RouteShortInfoDto {
 

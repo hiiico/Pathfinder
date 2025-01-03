@@ -2,14 +2,13 @@ package com.example.pathfinder.service;
 
 import com.example.pathfinder.data.UserRepository;
 import com.example.pathfinder.model.entities.User;
+import com.example.pathfinder.service.dtos.UserProfileDto;
 import com.example.pathfinder.web.dtos.UserLoginDto;
 import com.example.pathfinder.web.dtos.UserRegisterDto;
 import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import java.util.Optional;
 
 @Service
 public class UserService {
@@ -48,5 +47,9 @@ public class UserService {
 
     public void logout() {
         currentUser.setUser(null);
+    }
+
+    public UserProfileDto getProfileData() {
+        return modelMapper.map(currentUser.getUser(), UserProfileDto.class);
     }
 }

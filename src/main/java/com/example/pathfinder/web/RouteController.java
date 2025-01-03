@@ -1,6 +1,6 @@
 package com.example.pathfinder.web;
 
-import com.example.pathfinder.model.dtos.RouteShortInfoDto;
+import com.example.pathfinder.service.dtos.RouteShortInfoDto;
 import com.example.pathfinder.service.RouteService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;

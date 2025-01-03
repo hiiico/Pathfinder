@@ -2,6 +2,7 @@ package com.example.pathfinder.web;
 
 import com.example.pathfinder.model.enums.UserLevel;
 import com.example.pathfinder.service.UserService;
+import com.example.pathfinder.service.dtos.UserProfileDto;
 import com.example.pathfinder.web.dtos.UserLoginDto;
 import com.example.pathfinder.web.dtos.UserRegisterDto;
 import jakarta.validation.Valid;
@@ -62,5 +63,12 @@ public class UserController {
     public String logout() {
         userService.logout();
         return "redirect:/";
+    }
+
+    @GetMapping("users/profile")
+    private ModelAndView viewProfile() {
+        ModelAndView mnv = new ModelAndView("profile");
+        mnv.addObject("profileDta", userService.getProfileData());
+        return mnv;
     }
 }

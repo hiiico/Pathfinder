@@ -1,7 +1,7 @@
 package com.example.pathfinder.service;
 
 import com.example.pathfinder.data.RouteRepository;
-import com.example.pathfinder.model.dtos.RouteShortInfoDto;
+import com.example.pathfinder.service.dtos.RouteShortInfoDto;
 import com.example.pathfinder.model.entities.Picture;
 import com.example.pathfinder.model.entities.Route;
 import jakarta.transaction.Transactional;
@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.Optional;
-import java.util.Random;
 
 @Service
 public class RouteService {
