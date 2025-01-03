@@ -33,7 +33,7 @@ public class UserService {
     }
 
     public void login(UserLoginDto loginData) {
-        User user = userRepository.findByUsername(loginData.getUserName());
+        User user = userRepository.findByUsername(loginData.getUsername());
         if(user == null) {
             // TODO throw exception
             return;
