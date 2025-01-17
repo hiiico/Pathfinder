@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+</head>
+<body>
+<div id="map" style="height: 300px;"></div>
+<form th:action="@{/search}"
+      method="post">
+    <input
+            type="text"
+            name="query"
+            placeholder="Search for a location" required>
+    <input type="submit" value="Search">
+</form>
+<script>
+    var map = L.map('map').setView([42.327506,27.742826], 13);
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        maxZoom: 19,
+    }).addTo(map);
+</script>
+</body>
+</html>
